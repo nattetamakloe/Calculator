@@ -38,3 +38,13 @@ function operate(operate, num1, num2) {
     }
 }
 
+
+
+function updateDisplay() {
+    let state = document.getElementById('display');
+    console.log(state.textContent);
+
+}; 
+
+updateDisplay();
+
