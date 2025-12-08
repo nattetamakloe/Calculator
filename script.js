@@ -4,7 +4,14 @@ let num1;
 let operator;
 let num2;
 
-let buttons = document.querySelectorAll(".button").forEach(btn => {
+const buttons = document.querySelectorAll(".button").forEach(btn => {
+    btn.addEventListener('click', () => {
+        const value = btn.dataset.value;
+        const op = btn.dataset.op;
+        const action = btn.dataset.action;
+
+        updateDisplay(value, op, action);
+    })
     
 });
 
@@ -44,9 +51,19 @@ function operate(operate, num1, num2) {
 
 
 
-function updateDisplay() {
-    let state = document.getElementById('display');
-    console.log(state.textContent);
+function updateDisplay(value, op, action) {
+
+    if (value !== undefined) {
+        appendNumber(value);
+    }
+
+    if (op !== undefined) {
+        chooseOperator(op);
+    }
+
+    if (action === "equals") {
+        compute();
+    }
 
 }; 
 
