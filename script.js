@@ -4,6 +4,10 @@ let num1;
 let operator;
 let num2;
 
+let buttons = document.querySelectorAll(".button").forEach(btn => {
+    
+});
+
 /* 1. Grundläggande funktioner */
 function add(num1, num2) {
     return num1 + num2;
