@@ -67,5 +67,10 @@ function updateDisplay(value, op, action) {
 
 }; 
 
-updateDisplay();
+function appendNumber(value) {
+    let display = document.querySelector('#display');
+    display.textContent = value;
+};
+
+
 
