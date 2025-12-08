@@ -12,7 +12,7 @@ const buttons = document.querySelectorAll(".button").forEach(btn => {
 
         updateDisplay(value, op, action);
     })
-    
+
 });
 
 /* 1. Grundläggande funktioner */
@@ -36,13 +36,13 @@ function divide(num1, num2) {
 tar en operator och två nummer
 anropar motsvarande matematiska funktion */
 function operate(operate, num1, num2) {
-    switch(operate) {
+    switch (operate) {
         case "+": return add(num1, num2);
-            
+
         case "-": return subtract(num1, num2);
-        
+
         case "*": return multiply(num1, num2);
-    
+
         case "/": return divide(num1, num2);
 
         default: return "Invalid operator"
@@ -65,11 +65,15 @@ function updateDisplay(value, op, action) {
         compute();
     }
 
-}; 
+};
 
 function appendNumber(value) {
     let display = document.querySelector('#display');
-    display.textContent = value;
+    if (display.textContent == 0) {
+        display.textContent = value;
+    } else {
+        display.textContent += value;
+    }
 };
 
 
