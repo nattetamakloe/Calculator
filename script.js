@@ -87,7 +87,10 @@ function chooseOperator(op) {
 
 function compute() {
     num2 = Number(display.textContent);
-    display.textContent = operate(operator, num1, num2);    
+    display.textContent = operate(operator, num1, num2);
+    num1 = Number(display.textContent);
+    num2 = undefined;
+    operator = undefined;
 };
 
 
