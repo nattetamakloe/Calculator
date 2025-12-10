@@ -29,6 +29,10 @@ function updateDisplay(value, op, action) {
         compute();
     }
 
+    if (action === "clear") {
+        clearDisplay();
+    }
+
 };
 
 function appendNumber(value) {
@@ -46,27 +50,54 @@ function appendNumber(value) {
 };
 
 function chooseOperator(op) {
-    if (operator !== undefined && display.textContent !== '0') {
-        compute();
+
+    if (operator !== undefined && newNumber === true) {
         operator = op;
-    } else {
-        num1 = Number(display.textContent);
-        display.textContent = 0;
-        operator = op;
+        return;
     }
-    newNumber = true
 
+    if (operator !== undefined && !newNumber) {
+        compute();
+    }
 
+    num1 = Number(display.textContent);
+    operator = op;
+    newNumber = true; 
 }
 
 function compute() {
+
+    if (operator === "divide" && Number(display.textContent) === 0) {
+        display.textContent = "Nope!";
+        num1 = undefined;
+        num2 = undefined;
+        operator = undefined;
+        newNumber = true;
+        return;
+    }
+
     num2 = Number(display.textContent);
-    display.textContent = operate(operator, num1, num2);
-    num1 = Number(display.textContent);
+
+    let result = operate(operator, num1, num2);
+
+    result = roundNumber(result);
+
+    display.textContent = result;
+
+    num1 = result;
     num2 = undefined;
     operator = undefined;
-    newNumber = true
-};
+    newNumber = true;
+}
+
+
+function clearDisplay() {
+    display.textContent = 0;
+    num1 = undefined;
+    num2 = undefined;
+    operator = undefined;
+    newNumber = false;
+}
 
 function operate(operator, num1, num2) {
     switch (operator) {
@@ -97,5 +128,10 @@ function multiply(num1, num2) {
 function divide(num1, num2) {
     return num1 / num2;
 };
+
+function roundNumber(num) {
+    return Math.round(num * 100000) / 100000;
+}
+
 
 
