@@ -1,6 +1,7 @@
 let num1;
 let operator;
 let num2;
+let newNumber = false;
 
 const display = document.querySelector('#display');
 
@@ -31,6 +32,12 @@ function updateDisplay(value, op, action) {
 };
 
 function appendNumber(value) {
+    if (newNumber) {
+        display.textContent = value;
+        newNumber = false;
+        return;
+
+    }
     if (display.textContent == 0) {
         display.textContent = value;
     } else {
@@ -47,6 +54,7 @@ function chooseOperator(op) {
         display.textContent = 0;
         operator = op;
     }
+    newNumber = true
 
 
 }
@@ -57,6 +65,7 @@ function compute() {
     num1 = Number(display.textContent);
     num2 = undefined;
     operator = undefined;
+    newNumber = true
 };
 
 function operate(operator, num1, num2) {
